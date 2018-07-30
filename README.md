@@ -1,6 +1,6 @@
 # Jalali-Lab Implementation of RAISR Algorithm
 
-[RAISR](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7744595) (Rapid and Accurate Image Super Resolution) is an image processing algorithm published by Google Research in 2016. With sufficient training data, consisting of low and high resolution image pairs, RAISR algorithm tries to learn a set of filters which can be applied to an input image that is not in the training set, to produce a higher resolution version of it. The source code released here is the Jalali-Lab implementation of the RAISR algorithm in Python 3.x written by Sifeng He. The implementation presented here achieved performance results that are comparable to that presented in Google's research paper (with less than &#177; 0.1 dB in PSNR). 
+[RAISR](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7744595) (Rapid and Accurate Image Super Resolution) is an image processing algorithm published by Google Research in 2016. With sufficient training data, consisting of low and high resolution image pairs, RAISR algorithm tries to learn a set of filters which can be applied to an input image that is not in the training set, to produce a higher resolution version of it. The source code released here is the [Jalali-Lab](http://photonics.ucla.edu/index.html) implementation of the RAISR algorithm written in Python 3.x by [Sifeng He](https://www.linkedin.com/in/sifeng-he-969230134/), under the guidance of [Prof. Bahram Jalali](http://photonics.ucla.edu/bahram_jalali.html). The implementation presented here achieved performance results that are comparable to that presented in Google's research paper (with less than &#177; 0.1 dB in PSNR). 
 Just-in-time (JIT) compilation employing JIT numba is used to speed up the Python code. A very parallelized Python code employing multi-processing capabilities is used to speed up the testing process. The code has been tested on **GNU/Linux** and **Mac OS X 10.13.2** platforms. 
 
 ## Dependencies
@@ -44,3 +44,6 @@ Google's RAISR implementation was trained on 10000 advertising banner images. Ou
 ## Sample Result
 A high resolution image after downscaling it by 3 was used as the input low resolution image, to both bicubic interpolation and our implementation of RAISR. The results for this testcase comparing the original high resolution image, bicubic interpolation output image and output of our implementation of RAISR are shown below:
 ![](Comparison_result.png)
+
+## Acknowledgments
+Special thanks to [Dr. Cejo Konuparamban Lonappan](https://www.linkedin.com/in/cejokl/) for his support and guidance. 
