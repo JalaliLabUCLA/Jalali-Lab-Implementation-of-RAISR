@@ -14,6 +14,11 @@ All the dependent Python modules needed for the using our RAISR implementation c
 *  pickle
 *  skimage
 
+Additionally, a requirements.txt file is provided for installing all the dependencies by running the following command in a shell: 
+```
+pip install -U -r requirements.txt
+```
+
 ## Training
 All the training images are to be stored in the **trainingData** directory, before executing the **Train.py** script. In the training script, modify the upscaling factor, R, appropriately. The training outputs three files, **filter**, **Qfactor_str**, and **Qfactor_coh**, which are needed in the testing phase. The training data used in this implementation is the **BSD 200** ([Martin et al. ICCV 2001](https://www.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/)). A pre-trained filter with upscaling factors x2, x3, and x4 are available for testing in the **Filter** directory.
 
