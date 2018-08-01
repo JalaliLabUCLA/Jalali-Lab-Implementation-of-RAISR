@@ -26,29 +26,33 @@ All the training images are to be stored in the **trainingData** directory, befo
 All the test images are to be stored in the **testData** directory, before executing the **Test.py** script. In the test script, change the upscaling factor, R, and filters. The result image will be saved in **results** directory. The test data used for the development of the algorithm were **Set 5** ([Bevilacqua et al. BMVC 2012](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html)) and **Set 14** ([Zeyde et al. LNCS 2010](https://sites.google.com/site/romanzeyde/research-interests)). 
 
 ## Quantitative Comparison
-Google's RAISR implementation was trained on 10000 advertising banner images. Our implementation of RAISR was trained on [BSD 200] (https://www.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) (200 images) and on 500 images from [COCO](http://mscoco.org/) dataset. The training time for our implementation on a 3.4 GHz 6-core Xeon desktop computer is about 20 minutes for BSD 200 dataset and an hour for the 500 images from COCO dataset. The average test time for one single image in test dataset ([Set 5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html) and [Set 14](https://sites.google.com/site/romanzeyde/research-interests)) is less than 1 second.
-<center>
-
 | Upscale Factor | Google RAISR  | Our implementation trained <br> on BSD 200 images | Our implementation trained <br> on COCO (500 images) |
 |:-------------: |:---------------:| :-------------:| :-------------:|
 | 2x      | 35.913 |   35.855|     35.878 |
 | 3x      | 32.061 |   31.981|     32.019 |
 | 4x      | 29.689 |   29.717|     29.801 |
 ##### Table 1. Comparison of Results on [Set 5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html) Images
-
-<br>
-
 | Upscale Factor | Google RAISR  | Our implementation trained <br> on BSD 200 images | Our implementation trained <br> on COCO (500 images) |
 |:-------------: |:---------------:| :-------------:| :-------------:|
 | 2x      | 31.980 |   31.790|     31.816 |
 | 3x      | 28.764 |   31.714|     28.729 |
 | 4x      | 26.912 |   26.901|     26.935 |
 ##### Table 2. Comparison of Results Results on [Set 14](https://sites.google.com/site/romanzeyde/research-interests) Images
-</center>
+
+Google's RAISR implementation was trained on 10000 advertising banner images. Our implementation of RAISR was trained on [BSD 200] (https://www.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/) (200 images) and on 500 images from [COCO](http://mscoco.org/) dataset. The training time for our implementation on a 3.4 GHz 6-core Xeon desktop computer is about 20 minutes for BSD 200 dataset and an hour for the 500 images from COCO dataset. The average test time for one single image in test dataset ([Set 5](http://people.rennes.inria.fr/Aline.Roumy/results/SR_BMVC12.html) and [Set 14](https://sites.google.com/site/romanzeyde/research-interests)) is less than 1 second.
 
 ## Sample Result
-A high resolution image after downscaling it by 3 was used as the input low resolution image, to both bicubic interpolation and our implementation of RAISR. The results for this testcase comparing the original high resolution image, bicubic interpolation output image and output of our implementation of RAISR are shown below:
-![](Comparison_result.png)
+<p align="center">
+  <img src="Comparison_result.png">
+</p>
+A high resolution image after downscaling it by 3 was used as the input low resolution image to both bicubic interpolation and our implementation of RAISR algorithm. A comparison of the resulted output image for this testcase with bicubic interpolation and our implementation of RAISR is shown in the figure above. 
+
+## Citations
+Please cite the following publications if you plan to use the code or the results for your research: 
+1. Sifeng He, Bahram Jalali. "Brain MRI Image Super Resolution using Phase Stretch Transform and Transfer Learning", *arXiv preprint arXiv:1807.11643*, (2018).
 
 ## Acknowledgments
 Special thanks to [Dr. Cejo Konuparamban Lonappan](https://www.linkedin.com/in/cejokl/) for his support and guidance. 
+
+## License
+The code is released under GNU General Public License 3.0. Please refer to the LICENSE file for details.
