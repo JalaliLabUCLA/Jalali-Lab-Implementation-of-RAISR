@@ -245,6 +245,12 @@ def Backprojection(LR, HR, maxIter):
 
     return HR
 
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+    except OSError:
+        print ('Error: Creating directory. ' +  directory)
 
 def Dog1(im):
     sigma = 0.85
