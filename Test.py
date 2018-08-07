@@ -188,6 +188,7 @@ for image in filelist:
     PSNR_blending = compare_psnr(im[region], im_blending[region])
     PSNR_blending = max(PSNR_result, PSNR_blending)
 
+    createFolder('./results/')
     cv2.imwrite('results/' + os.path.splitext(os.path.basename(image))[0] + '_result.bmp', result_RAISR)
     psnrRAISR.append(PSNR_result)
     psnrBicubic.append(PSNR_bicubic)
