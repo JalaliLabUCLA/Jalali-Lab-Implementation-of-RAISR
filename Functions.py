@@ -28,7 +28,6 @@ def BGR2YCbCr(im):
     mat = np.array([[24.966, 128.553, 65.481],[112, -74.203, -37.797], [-18.214, -93.786, 112]])
     mat = mat.T
     offset = np.array([[[16, 128, 128]]])
-
     if im.dtype == 'uint8':
         mat = mat/255
         out = np.dot(im,mat) + offset
@@ -48,7 +47,6 @@ def YCbCr2BGR(im):
     mat = mat.T
     mat = np.linalg.inv(mat)
     offset = np.array([[[16, 128, 128]]])
-
     if im.dtype == 'uint8':
         mat = mat * 255
         out = np.dot((im - offset),mat)
@@ -64,12 +62,12 @@ def YCbCr2BGR(im):
     return out
 
 def im2double(im):
-    min_val = np.min(im.ravel())
-    max_val = np.max(im.ravel())
     if im.dtype == 'uint8':
         out = im.astype('float') / 255
     elif im.dtype == 'uint16':
         out = im.astype('float') / 65535
+    elif im.dtype == 'float':
+        out = im
     else:
         assert False
     out = np.clip(out, 0, 1)
@@ -123,7 +121,6 @@ def is_greyimage(im):
 
 @nb.jit(nopython=True, parallel=True)
 def Grad(patchX,patchY,weight):
-
     gx = patchX.ravel()
     gy = patchY.ravel()
     G = np.vstack((gx,gy)).T
@@ -133,17 +130,13 @@ def Grad(patchX,patchY,weight):
     index= w.argsort()[::-1]
     w = w[index]
     v = v[:,index]
-
     lamda = w[0]
-
     u = (np.sqrt(w[0]) - np.sqrt(w[1]))/(np.sqrt(w[0]) + np.sqrt(w[1]) + 0.00000000000000001)
-
     return lamda,u
 
 @nb.jit(nopython=True, parallel=True)
 def HashTable(patchX,patchY,weight, Qangle,Qstrength,Qcoherence,stre,cohe):
     assert (len(stre)== Qstrength-1) and (len(cohe)==Qcoherence-1),"Quantization number should be equal"
-
     gx = patchX.ravel()
     gy = patchY.ravel()
     G = np.vstack((gx,gy)).T
@@ -153,28 +146,20 @@ def HashTable(patchX,patchY,weight, Qangle,Qstrength,Qcoherence,stre,cohe):
     index= w.argsort()[::-1]
     w = w[index]
     v = v[:,index]
-
     theta = atan2(v[1,0], v[0,0])
     if theta<0:
         theta = theta+pi
     theta = floor(theta/(pi/Qangle))
-
     lamda = w[0]
-
     u = (np.sqrt(w[0]) - np.sqrt(w[1]))/(np.sqrt(w[0]) + np.sqrt(w[1]) + 0.00000000000000001)
-
     if isnan(u):
         u=1
-
     if theta>Qangle-1:
         theta = Qangle-1
     if theta<0:
         theta = 0
-
     lamda = np.searchsorted(stre,lamda)
-
     u = np.searchsorted(cohe,u)
-
     return theta,lamda,u
 
 @nb.jit(nopython=True, parallel=True)
@@ -233,7 +218,6 @@ def Blending2(LR, HR):
 def Backprojection(LR, HR, maxIter):
     H, W = LR.shape
     H1, W1 = HR.shape
-
     w = Gaussian2d((5,5), 10)
     w = w**2
     w = w/sum(np.ravel(w))
@@ -242,7 +226,6 @@ def Backprojection(LR, HR, maxIter):
         imd = LR - im_L
         im_d = imresize(imd, (H1, W1), interp='bicubic', mode='F')
         HR = HR + convolve2d(im_d, w, 'same')
-
     return HR
 
 def createFolder(directory):

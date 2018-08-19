@@ -51,13 +51,13 @@ Qangle = 24  # Quantization factor of angle =24
 Qstrength = 3  # Quantization factor of strength =3
 Qcoherence = 3  # Quantization factor of coherence =3
 
-with open("Filter/filter"+str(R), "rb") as fp:
+with open("Filters/filter"+str(R), "rb") as fp:
     h = pickle.load(fp)
 
-with open("Filter/Qfactor_str"+str(R), "rb") as sp:
+with open("Filters/Qfactor_str"+str(R), "rb") as sp:
     stre = pickle.load(sp)
 
-with open("Filter/Qfactor_coh"+str(R), "rb") as cp:
+with open("Filters/Qfactor_coh"+str(R), "rb") as cp:
     cohe = pickle.load(cp)
 
 filelist = make_dataset(testPath)
@@ -168,8 +168,9 @@ for image in filelist:
 
     if len(im_uint8.shape) > 2:
         result_ycbcr = np.zeros((H, W, 3))
-        result_ycbcr[:, :, 1:3] = im_ycbcr[:, :, 1:3]
         result_ycbcr[:, :, 0] = im_blending * 255
+        result_ycbcr[:, :, 1] = Prepare(im_ycbcr[:, :, 1], patchSize, R) * 255
+        result_ycbcr[:, :, 2] = Prepare(im_ycbcr[:, :, 2], patchSize, R) * 255
         result_ycbcr = result_ycbcr[region].astype('uint8')
         result_RAISR = YCbCr2BGR(result_ycbcr)
     else:

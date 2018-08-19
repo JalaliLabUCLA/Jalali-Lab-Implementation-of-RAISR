@@ -63,7 +63,7 @@ Google's RAISR implementation was trained on 10000 advertising banner images. Ou
 <p align="center">
   <img src="Comparison_result.png">
 </p>
-A high resolution image after downscaling it by 3 was used as the input low resolution image to both bicubic interpolation and our implementation of RAISR algorithm. A comparison of the resulted output image for this testcase with bicubic interpolation and our implementation of RAISR is shown in the figure above. 
+A high resolution image after downscaling it by 2 was used as the input low resolution image to both bicubic interpolation and our implementation of RAISR algorithm. A comparison of the resulted output image for this testcase with bicubic interpolation and our implementation of RAISR is shown in the figure above.
 
 ## Citations
 Please cite the following publications if you plan to use the code or the results for your research: 
